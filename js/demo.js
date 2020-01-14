@@ -152,11 +152,7 @@
                     this.DOM.inner.appendChild(this.DOM.img.cloneNode(true));
                 }
                 // Initialize the tilt effect.
-                this.tilt = new TiltFx(this.DOM.inner, {
-                    valuesFromTo: [20,-20],
-                    lerpFactorOuter: 0.1,
-                    lerpFactor: pos => 0.02*pos+0.02
-                });
+           
             }
         }
     }
@@ -214,7 +210,7 @@
         toggleCurrent(isCurrent) {
             this.DOM.el.classList[isCurrent ? 'add' : 'remove']('slide--current');
             // Start/Stop the images tilt effect (initialized on the main figure).
-            this.figures.find(figure => figure.isMain).tilt[isCurrent ? 'start' : 'stop']();
+            // this.figures.find(figure => figure.isMain).tilt[isCurrent ? 'start' : 'stop']();
             // Start/Stop the title tilt effect.
             this.textTilt[isCurrent ? 'start' : 'stop']();
         }
@@ -253,9 +249,12 @@
         }
         showContent() {
             this.toggleContent('show');
+            $('#social').hide();
         }
         hideContent() {
             this.toggleContent('hide');
+            $('#social').show();
+
         }
         toggleContent(action) {
             if ( this.isAnimating ) {
@@ -393,9 +392,13 @@
 
             const onStartUpcomingCallback = () => {
                 upcomingSlide.figures.forEach((figure) => {
+                    console.log(figure.DOM.slideEl)
                     TweenMax.set(figure.DOM.slideEl, {
-                        x: this.dir === 'right' ? '-101%' : '101%'
+                        x: this.dir === 'right' ? '-101%' : '101%',
+                        // boxShadow: '0px'
+
                     });
+
                 });
                 TweenMax.set(upcomingSlide.DOM.text, {opacity: 0}); 
                 upcomingSlide.DOM.innerTitle.forEach((inner, pos) => {
@@ -415,14 +418,17 @@
                 currentSlide.figures.slice().sort((a,b) => a.DOM.el.dataset.sort-b.DOM.el.dataset.sort).reverse();
 
             currentSlideFigures.forEach((figure, pos) => {
+
                 this.tl
                 .to(figure.DOM.el, this.animationSettings.duration, { 
                     ease: this.animationSettings.ease,
-                    x: this.dir === 'right' ? '-101%' : '101%'
+                    x: this.dir === 'right' ? '-101%' : '101%',
+                    // boxShadow: 'transparent -10px -10px 0 0'
                 }, 'begin+=' + pos*this.animationSettings.staggerFactor)
                 .to(figure.DOM.slideEl, this.animationSettings.duration, { 
                     ease: this.animationSettings.ease,
                     startAt: {transformOrigin: '0% 50%'},
+                    // boxShadow: 'none',
                     x: this.dir === 'right' ? '101%' : '-101%'
                 }, 'begin+=' + pos*this.animationSettings.staggerFactor);
             });

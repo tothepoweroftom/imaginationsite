@@ -318,7 +318,7 @@
 
  function getRandomIdentity() {
     let index = Math.floor(Math.random()*imagination.length);
-    if(Math.random()*10 > 5.0 && $('#cyclops-text').text() != "Imagination of Things is a design fiction studio") {
+    if(Math.random()*10 > 8.0 && $('#cyclops-text').text() != "Imagination of Things is a design fiction studio") {
         return "Imagination of Things is a design fiction studio"
     } else {
         return imagination[index];

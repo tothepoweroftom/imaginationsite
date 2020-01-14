@@ -113,7 +113,7 @@ a[data-v-69fa8996]{
 html, body{
 	background-color: "#383838";
 	font-family:'VG5000';
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   top:0px;
   left:0px;
 
@@ -968,7 +968,7 @@ position: relative;
 
 
 
-.icon{
+.iconn{
 	overflow:visible;
   width:100%;
   height:100%;
