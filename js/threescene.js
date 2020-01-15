@@ -1,7 +1,7 @@
 var container, renderer, scene, camera, mesh, background, fov = 45;
 var start = Date.now();
 // const PALETTE = ["#ffef1a", "#eecbad", "#2ba955", "#d4d645", "#2963ff", "#f022fe"];
-const PALETTE = [ "#fff147", "#2ba955", "#2963ff", "#f022fe", "#34acfa"];
+const PALETTE = [  "#f44e37", "#2ba975", "#3864ff",  "#f9e940",];
 var colorIndex = 0;
 var timeMultiplier = 0.0008;
 $('body').dblclick(tweencolor);
@@ -197,6 +197,53 @@ $(window).scroll(function (event) {
     // Do something
 });
 
+function tweencolorindex(index) {
+    var col = new THREE.Color(PALETTE[index % PALETTE.length]);
+
+    // Show text
+
+    // Hide all elements
+    $('#cyclops-text').show();
+    $('#roboto').show();
+    $('#follower').show();
+    $('#click-hold').show();
+    $('#tap-hold').show();
+
+    $('#roboto-loader').hide();
+
+    TweenLite.to(background.material.color, 1, {
+        r: col.r,
+        g: col.g,
+        b: col.b,
+        onComplete: function () {
+            colorIndex += 1;
+        }
+    });
+
+    TweenLite.to(weight, 1, {
+        value: 5.0 + Math.random()*5,
+ 
+        onComplete: function () {
+            TweenLite.to(weight, 1, {
+                value: 2.0
+            })
+        }
+    });
+
+    // event trigger
+
+
+    $(".click-hold").toggleClass("click-hold-a");
+    $(".click-hold").toggleClass("click-hold-b");
+
+
+
+    $(".squiggle").toggleClass("squiggle-animation-class-a");
+        $(".squiggle").toggleClass("squiggle-animation-class-b");
+
+
+}
+
 function tweencolor() {
     var col = new THREE.Color(PALETTE[colorIndex % PALETTE.length]);
 
@@ -244,8 +291,8 @@ function tweencolor() {
 
 }
 
+
 function onWindowResize() {
-    console.log(window.innerWidth)
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();

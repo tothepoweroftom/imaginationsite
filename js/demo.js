@@ -243,6 +243,9 @@
             this.current = this.dir === 'right' ? this.current < this.slidesTotal - 1 ? this.current + 1 : 0 :
                                             this.current > 0 ? this.current - 1 : this.slidesTotal - 1;
 
+            console.log(this.current);
+            tweencolorindex(this.current);
+
             const currentSlide = this.slides[oldcurrent];
             const upcomingSlide = this.slides[this.current];
             this.toggleSlides(currentSlide, upcomingSlide);
