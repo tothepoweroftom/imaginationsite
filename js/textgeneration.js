@@ -30,6 +30,7 @@
       * @param {number} [delay=300]
       */
      $.fn.doubletap = $.fn.doubletap || function (handler, delay) {
+         
          delay = delay == null ? 300 : delay;
          this.bind('touchend', function (event) {
              var now = new Date().getTime();
@@ -132,7 +133,7 @@
      });
      myShakeEvent2.start();
 
-     console.log()
+    //  console.log()
 
      // //  $('#tap-hold').fadeOut();
      // $('#tap-hold').fadeToggle("slow", "linear" );

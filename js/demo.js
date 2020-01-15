@@ -543,5 +543,5 @@
     // });
 
     // Preload all the images in the page.
-    imagesLoaded(document.querySelectorAll('.slide__figure-img'), {background: true}, () => body.classList.remove('loading'));
+    imagesLoaded(document.querySelectorAll('.slide__figure-img'), {background: true}, () => $('.loading').hide());
 }

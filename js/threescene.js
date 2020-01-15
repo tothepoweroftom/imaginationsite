@@ -19,7 +19,7 @@ function init() {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         // some code..
         mobile = true;
-        $('#instruction').text("Double tap or shake")
+        $('#instruction').text("Double tap")
 
     }
 
@@ -181,7 +181,7 @@ function init() {
     //     }); 
 
     //  });
-    $('.loading').hide();
+    // $('.loading').hide();
 
 
     render();
