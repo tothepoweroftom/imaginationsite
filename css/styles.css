@@ -146,7 +146,7 @@ html, body{
 #second{
   z-index:1; 
   position:relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 
