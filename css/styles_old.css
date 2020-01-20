@@ -321,6 +321,7 @@ h1 h2 h3, a:hover{
 
  }
 
+/* 
 .body-text img{
 
 }
@@ -336,7 +337,6 @@ h1 h2 h3, a:hover{
 .body-text:nth-of-type(2){
   margin-top:30%;
   margin-left:30%;
-  /* left:150vw; */
   left:520px;
   box-shadow: 8px 8px;
 }
@@ -346,7 +346,7 @@ h1 h2 h3, a:hover{
   margin-left:35%;
   left:520px;
   box-shadow: 8px 8px;
-  /* left:150vw; */
+
 }
 
 .body-text:nth-of-type(4){
@@ -363,7 +363,7 @@ h1 h2 h3, a:hover{
   box-shadow: 8px 8px;
   width: 60%;
 }
-
+*/
 
 @media screen and (max-width: 600px) {
 

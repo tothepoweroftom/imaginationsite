@@ -36,7 +36,7 @@ function init() {
         cursorX = e.pageX;
         cursorY = e.pageY;
         $('#follower').css({
-               left: -window.innerWidth/20 + THREE.Math.mapLinear(cursorX, 0, window.innerWidth, -50, 50),
+               left: 0 + THREE.Math.mapLinear(cursorX, 0, window.innerWidth, -50, 60),
                top:  window.innerHeight/2000 + THREE.Math.mapLinear(cursorY, 0, window.innerHeight, -20,20),
         });
     
@@ -54,7 +54,7 @@ function init() {
     window.addEventListener('shake', tweencolor, false);
 
 
-    container = document.getElementById('three-container');
+    container = document.getElementById('threejs-container');
 
     scene = new THREE.Scene();
 
@@ -210,6 +210,13 @@ function tweencolorindex(index) {
     $('#tap-hold').show();
 
     $('#roboto-loader').hide();
+  
+        TweenLite.to(document.body.style, 1, {
+        background: PALETTE[index % PALETTE.length],
+        onComplete: function () {
+            // colorIndex += 1;
+        }
+    });
 
     TweenLite.to(background.material.color, 1, {
         r: col.r,
@@ -257,7 +264,16 @@ function tweencolor() {
     $('#tap-hold').show();
 
     $('#roboto-loader').hide();
-
+  
+  
+      TweenLite.to(document.body.style, 1, {
+        background: PALETTE[colorIndex % PALETTE.length],
+        onComplete: function () {
+            // colorIndex += 1;
+        }
+    });
+  
+  
     TweenLite.to(background.material.color, 1, {
         r: col.r,
         g: col.g,
@@ -266,6 +282,8 @@ function tweencolor() {
             colorIndex += 1;
         }
     });
+  
+
 
     TweenLite.to(weight, 1, {
         value: 5.0 + Math.random()*5,

@@ -1,8 +1,10 @@
- var lines, markov;
+
+var lines, markov;
  var articles, articleIndex;
  articleIndex = 0;
  var concatArticleTitles = '';
  let imagination = ["Imagination of things is a design fiction studio"]
+var hasntClicked = true;
 
  var bits = ['could be', 'was']
  var preUsedNounBuffer = []
@@ -39,6 +41,8 @@
              var delta = now - lastTouch;
              if (delta < delay && 0 < delta) {
                  // After we detect a doubletap, start over.
+                      hasntClicked = false
+
                  $(this).data('lastTouch', null);
                  if (handler !== null && typeof handler === 'function') {
                      handler(event);
