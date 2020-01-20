@@ -8,6 +8,8 @@
  * Copyright 2019, Codrops
  * http://www.codrops.com
  */
+
+var moreOpen = false
 {
     // Some help functions.
     const shuffleArray = arr => arr.sort(() => Math.random() - 0.5);
@@ -168,7 +170,7 @@
             this.contentcolor = this.DOM.el.dataset.contentcolor;
             this.onClickBackFromContentFn = () => {
                 slideshow.hideContent();
-                $('.nav').show() 
+                $('.nav').fadeIn() 
             };
             this.DOM.backFromContentCtrl = this.DOM.el.querySelector('.slide__back');
             this.DOM.backFromContentCtrl.addEventListener('click', this.onClickBackFromContentFn);
@@ -198,6 +200,7 @@
             this.onClickShowContentFn = (ev) => {
                 ev.preventDefault();
                 slideshow.showContent();
+                $('.nav').fadeOut();
             };
             this.DOM.showContentCtrl.addEventListener('click', this.onClickShowContentFn);
         }
@@ -296,10 +299,10 @@
             };
             this.tl.addCallback(onSwitchCallback, times.switchtime);
             
-            this.tl.to(body, this.animationSettings.duration, { 
-                ease: this.animationSettings.ease,
-                backgroundColor: action === 'show' ? currentSlide.contentcolor : bodyColor
-            }, 'begin+=' + times.switchtime);
+            // this.tl.to(body, this.animationSettings.duration, { 
+            //     ease: this.animationSettings.ease,
+            //     backgroundColor: action === 'show' ? currentSlide.contentcolor : bodyColor
+            // }, 'begin+=' + times.switchtime);
 
             const currentSlideFigures = this.dir === 'down' ? 
                 currentSlide.figures.sort((a,b) => a.DOM.el.dataset.sort-b.DOM.el.dataset.sort) : 
@@ -395,7 +398,7 @@
 
             const onStartUpcomingCallback = () => {
                 upcomingSlide.figures.forEach((figure) => {
-                    console.log(figure.DOM.slideEl)
+                    
                     TweenMax.set(figure.DOM.slideEl, {
                         x: this.dir === 'right' ? '-101%' : '101%',
                         // boxShadow: '0px'
@@ -534,6 +537,24 @@
     const slideshow = new Slideshow(document.querySelector('.slideshow'));
     const nav = new Navigation(document.querySelector('.nav'));
     slideshow.nav = nav;
+  
+    $('#more').click(()=>{
+      console.log("more")
+      tweencolorindex(1);
+      moreOpen = true;
+      
+      setTimeout(()=>{
+              window.scrollTo({  top: document.body.scrollHeight*0.86, 
+            left: 0, 
+            behavior: 'smooth'});
+
+      },500)
+      $('.frame').fadeIn(1000).show();
+      $('.nav').fadeIn(1000).show();
+
+      $('#slideshow').fadeIn(1000).show();
+$("#selected-projects").css({ 'height': 0 + "px" }).hide();
+    })
 
     // Custom cursor chnages state when hovering on elements with 'data-hover'.
     // [...document.querySelectorAll('[data-hover]')].forEach((link) => {
